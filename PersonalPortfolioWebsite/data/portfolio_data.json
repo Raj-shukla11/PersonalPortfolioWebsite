@@ -1,0 +1,108 @@
+{
+  "personal_info": {
+    "name": "Raj Shukla",
+    "title": "Computer Science Student & Machine Learning Enthusiast",
+    "location": "Prayagraj, Uttar Pradesh 211019",
+    "phone": "+91-9118428313",
+    "email": "shuklaraj0002@gmail.com",
+    "linkedin": "linkedin.com/in/raj-shukla11",
+    "github": "github.com/raj-shukla11",
+    "bio": "Passionate Computer Science student specializing in Machine Learning and AI. Currently pursuing CSE at Lovely Professional University with hands-on experience in developing AI models for healthcare and recommendation systems."
+  },
+  "skills": {
+    "languages": ["C++", "Java", "Python"],
+    "frameworks": ["TensorFlow", "PyTorch", "Scikit-Learn", "Keras", "Flask"],
+    "soft_skills": ["Team Player", "Problem-Solving", "Time Management", "Adaptability", "Patience"],
+    "tools": ["Git", "GitHub", "Jupyter Notebook", "Google Colab"]
+  },
+  "education": [
+    {
+      "institution": "Lovely Professional University",
+      "degree": "Computer Science and Engineering",
+      "duration": "2022 – 2026",
+      "location": "Phagwara, Punjab",
+      "cgpa": "6.7"
+    },
+    {
+      "institution": "Bal Bharti School",
+      "degree": "Intermediate",
+      "duration": "2021 – 2022",
+      "location": "Prayagraj, Uttar Pradesh",
+      "percentage": "70%"
+    },
+    {
+      "institution": "Bal Bharti School",
+      "degree": "Matriculation",
+      "duration": "2019 – 2020",
+      "location": "Prayagraj, Uttar Pradesh",
+      "percentage": "80%"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Identifying Skin Cancer Types",
+      "date": "Feb 2025",
+      "description": "Developed an AI model to classify skin cancer types (melanoma, nevus, seborrheic keratosis) accurately from dermoscopic images, overcoming issues like class imbalance and low lesion contrast.",
+      "approach": "Used EfficientNet-B6 with transfer learning, optimized color feature extraction, and metadata integration to enhance model accuracy and generalization.",
+      "results": "Achieved an AUC-ROC score of 0.9681 and an accuracy of 98.61%, outperforming existing models.",
+      "tech_stack": ["Python", "TensorFlow", "Keras", "EfficientNet", "Ranger Optimizer"],
+      "datasets": ["ISIC 2019", "ISIC 2020"],
+      "github_link": "#",
+      "demo_link": "#"
+    },
+    {
+      "title": "News Article Recommendation Engine",
+      "date": "Nov 2024",
+      "description": "Users often struggle to find relevant news articles based on their interests. This system aims to recommend news articles based on user input.",
+      "approach": "Implemented TF-IDF (Term Frequency-Inverse Document Frequency) and Cosine Similarity to analyze and rank articles based on relevance to a given title or keywords.",
+      "results": "Achieved high accuracy in recommending relevant articles by optimizing text preprocessing and vectorization techniques.",
+      "tech_stack": ["Python", "Scikit-learn", "NLP", "Flask"],
+      "datasets": [],
+      "github_link": "#",
+      "demo_link": "#"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Machine Learning Intern",
+      "company": "Appwars Technologies Pvt. Ltd.",
+      "duration": "Aug 2024",
+      "description": "Successfully completed an internship focused on Machine Learning. Gained practical experience in model training, evaluation, and deployment. Worked on real-world problems using Python, Scikit-learn, and TensorFlow.",
+      "certificate_id": "ATPL20425526",
+      "tech_stack": ["Python", "Scikit-learn", "TensorFlow"]
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Software Testing",
+      "issuer": "NPTEL",
+      "date": "Oct 2024",
+      "certificate_link": "/static/certificates/NPTEL_Software_Testing.pdf",
+      "verification_link": "",
+      "credential_id": "NPTEL24CS91S356900158"
+    },
+    {
+      "name": "Data Structures and Algorithms",
+      "issuer": "Geek for Geeks",
+      "date": "July 2024",
+      "certificate_link": "/static/certificates/GFG_Data_Structures_Algorithms.pdf",
+      "verification_link": "https://media.geeksforgeeks.org/courses/certificates/2b9a60e91537ba2c608b1cf580fc2576.pdf",
+      "credential_id": "2b9a60e91537ba2c608b1cf580fc2576"
+    },
+    {
+      "name": "Programming in C++",
+      "issuer": "Coursera",
+      "date": "Feb 2024",
+      "certificate_link": "/static/certificates/Coursera_C++_Programming.pdf",
+      "verification_link": "https://coursera.org/verify/specialization/3T72CKBVGNF6",
+      "credential_id": "3T72CKBVGNF6"
+    }
+  ],
+  "achievements": [
+    {
+      "title": "LeetCode Problem Solver",
+      "description": "Solved over 150+ LeetCode questions of easy and medium level",
+      "date": "Feb 2025"
+    }
+  ]
+}

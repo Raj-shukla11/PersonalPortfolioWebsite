@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - Raj Shukla{% endblock %}
+
+{% block content %}
+<section class="py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="text-center mb-5">
+                    <h1 class="display-5 fw-bold">Get In Touch</h1>
+                    <p class="lead">I'd love to hear from you. Send me a message and I'll respond as soon as possible.</p>
+                </div>
+                
+                <div class="row">
+                    <!-- Contact Form -->
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title mb-4">
+                                    <i class="fas fa-envelope me-2"></i>Send Message
+                                </h5>
+                                
+                                <form method="POST" action="{{ url_for('contact.contact') }}">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="name" class="form-label">Name *</label>
+                                            <input type="text" class="form-control" id="name" name="name" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="email" class="form-label">Email *</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="subject" class="form-label">Subject *</label>
+                                        <input type="text" class="form-control" id="subject" name="subject" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="message" class="form-label">Message *</label>
+                                        <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title mb-4">
+                                    <i class="fas fa-address-card me-2"></i>Contact Information
+                                </h5>
+                                
+                                <div class="contact-item mb-3">
+                                    <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                                    <div>
+                                        <strong>Location</strong><br>
+                                        <small class="text-muted">Prayagraj, Uttar Pradesh 211019</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-item mb-3">
+                                    <i class="fas fa-phone text-primary me-2"></i>
+                                    <div>
+                                        <strong>Phone</strong><br>
+                                        <a href="tel:+91-9118428313" class="text-decoration-none">
+                                            <small>+91-9118428313</small>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-item mb-3">
+                                    <i class="fas fa-envelope text-primary me-2"></i>
+                                    <div>
+                                        <strong>Email</strong><br>
+                                        <a href="mailto:shuklaraj0002@gmail.com" class="text-decoration-none">
+                                            <small>shuklaraj0002@gmail.com</small>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <hr>
+                                
+                                <div class="social-links text-center">
+                                    <h6 class="mb-3">Follow Me</h6>
+                                    <a href="https://github.com/raj-shukla11" target="_blank" class="btn btn-outline-secondary btn-sm me-2">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://linkedin.com/in/raj-shukla11" target="_blank" class="btn btn-outline-primary btn-sm">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Response Time Info -->
+                        <div class="card mt-3">
+                            <div class="card-body text-center">
+                                <i class="fas fa-clock fa-2x text-info mb-2"></i>
+                                <h6>Response Time</h6>
+                                <small class="text-muted">I typically respond within 24 hours</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Form validation and enhancement
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    
+    form.addEventListener('submit', function(e) {
+        // Disable button to prevent double submission
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+        
+        // Re-enable button after 3 seconds in case of error
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message';
+        }, 3000);
+    });
+    
+    // Character counter for message field
+    const messageField = document.getElementById('message');
+    const charCounter = document.createElement('small');
+    charCounter.className = 'text-muted float-end';
+    messageField.parentNode.appendChild(charCounter);
+    
+    function updateCharCounter() {
+        const remaining = 1000 - messageField.value.length;
+        charCounter.textContent = `${messageField.value.length}/1000 characters`;
+        
+        if (remaining < 50) {
+            charCounter.className = 'text-warning float-end';
+        } else {
+            charCounter.className = 'text-muted float-end';
+        }
+    }
+    
+    messageField.addEventListener('input', updateCharCounter);
+    updateCharCounter();
+});
+</script>
+{% endblock %}

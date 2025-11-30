@@ -1,0 +1,417 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="display-4 fw-bold mb-3">
+                        Hi, I'm <span class="text-primary">{{ data.personal_info.name }}</span>
+                    </h1>
+                    <h2 class="h4 text-muted mb-4">{{ data.personal_info.title }}</h2>
+                    <p class="lead mb-4">{{ data.personal_info.bio }}</p>
+                    
+                    <div class="contact-info mb-4">
+                        <p class="mb-2">
+                            <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                            {{ data.personal_info.location }}
+                        </p>
+                        <p class="mb-2">
+                            <i class="fas fa-phone text-primary me-2"></i>
+                            <a href="tel:{{ data.personal_info.phone }}" class="text-light text-decoration-none">
+                                {{ data.personal_info.phone }}
+                            </a>
+                        </p>
+                        <p class="mb-2">
+                            <i class="fas fa-envelope text-primary me-2"></i>
+                            <a href="mailto:{{ data.personal_info.email }}" class="text-light text-decoration-none">
+                                {{ data.personal_info.email }}
+                            </a>
+                        </p>
+                    </div>
+                    
+                    <div class="hero-buttons">
+                        <a href="{{ url_for('contact.contact') }}" class="btn btn-primary btn-lg me-3">
+                            <i class="fas fa-envelope me-2"></i>Get In Touch
+                        </a>
+                        <a href="#projects" class="btn btn-outline-secondary btn-lg">
+                            <i class="fas fa-code me-2"></i>View Projects
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-image text-center">
+                    <div class="profile-image">
+                        <img src="{{ url_for('static', filename='images/raj_profile.jpg') }}" 
+                             alt="Raj Shukla" 
+                             class="img-fluid rounded-circle profile-photo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-5 fw-bold mb-4">About Me</h2>
+                <p class="lead">{{ data.personal_info.bio }}</p>
+            </div>
+        </div>
+        
+        <!-- Education -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="h4 mb-4">Education</h3>
+                <div class="row">
+                    {% for edu in data.education %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ edu.degree }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ edu.institution }}</h6>
+                                <p class="card-text">
+                                    <small class="text-muted">{{ edu.duration }} | {{ edu.location }}</small>
+                                </p>
+                                {% if edu.cgpa %}
+                                <p class="card-text"><strong>CGPA:</strong> {{ edu.cgpa }}</p>
+                                {% elif edu.percentage %}
+                                <p class="card-text"><strong>Percentage:</strong> {{ edu.percentage }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-5 bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-4">Featured Projects</h2>
+                <p class="lead">Showcase of my recent work in Machine Learning and AI</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            {% for project in data.projects %}
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <small class="text-muted">{{ project.date }}</small>
+                        </div>
+                        
+                        <p class="card-text">{{ project.description }}</p>
+                        
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Approach:</h6>
+                            <p class="small">{{ project.approach }}</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Results:</h6>
+                            <p class="small">{{ project.results }}</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Tech Stack:</h6>
+                            <div class="tech-stack">
+                                {% for tech in project.tech_stack %}
+                                <span class="badge bg-primary me-1 mb-1">{{ tech }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        {% if project.datasets %}
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Datasets:</h6>
+                            <div class="datasets">
+                                {% for dataset in project.datasets %}
+                                <span class="badge bg-info me-1 mb-1">{{ dataset }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="project-links">
+                            {% if project.github_link and project.github_link != '#' %}
+                            <a href="{{ project.github_link }}" target="_blank" class="btn btn-outline-primary btn-sm me-2">
+                                <i class="fab fa-github me-1"></i>Code
+                            </a>
+                            {% endif %}
+                            {% if project.demo_link and project.demo_link != '#' %}
+                            <a href="{{ project.demo_link }}" target="_blank" class="btn btn-outline-success btn-sm">
+                                <i class="fas fa-external-link-alt me-1"></i>Demo
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-4">Skills & Technologies</h2>
+                <p class="lead">Tools and technologies I work with</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-code fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Programming Languages</h5>
+                        <div class="skill-tags">
+                            {% for lang in data.skills.languages %}
+                            <span class="badge bg-success me-1 mb-1">{{ lang }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-cogs fa-3x text-warning mb-3"></i>
+                        <h5 class="card-title">Frameworks & Libraries</h5>
+                        <div class="skill-tags">
+                            {% for framework in data.skills.frameworks %}
+                            <span class="badge bg-warning me-1 mb-1">{{ framework }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users fa-3x text-info mb-3"></i>
+                        <h5 class="card-title">Soft Skills</h5>
+                        <div class="skill-tags">
+                            {% for skill in data.skills.soft_skills %}
+                            <span class="badge bg-info me-1 mb-1">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements -->
+        {% if data.achievements %}
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="h4 mb-4">Achievements</h3>
+                <div class="row">
+                    {% for achievement in data.achievements %}
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title">
+                                    <i class="fas fa-trophy text-warning me-2"></i>
+                                    {{ achievement.title }}
+                                </h6>
+                                <p class="card-text">{{ achievement.description }}</p>
+                                <small class="text-muted">{{ achievement.date }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="py-5 bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-4">Experience</h2>
+                <p class="lead">Professional experience and internships</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            {% for exp in data.experience %}
+            <div class="col-lg-8 mx-auto mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h5 class="card-title">{{ exp.title }}</h5>
+                                <h6 class="card-subtitle text-muted">{{ exp.company }}</h6>
+                            </div>
+                            <span class="badge bg-primary">{{ exp.duration }}</span>
+                        </div>
+                        
+                        <p class="card-text">{{ exp.description }}</p>
+                        
+                        {% if exp.tech_stack %}
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Technologies Used:</h6>
+                            {% for tech in exp.tech_stack %}
+                            <span class="badge bg-secondary me-1 mb-1">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
+                        {% if exp.certificate_id %}
+                        <p class="small text-muted">
+                            <i class="fas fa-certificate me-1"></i>
+                            Certificate ID: {{ exp.certificate_id }}
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Certificates -->
+        {% if data.certificates %}
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="h4 mb-4 text-center">Certificates</h3>
+                <div class="row">
+                    {% for cert in data.certificates %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="fas fa-certificate fa-2x text-warning mb-2"></i>
+                                <h6 class="card-title">{{ cert.name }}</h6>
+                                <p class="card-text">{{ cert.issuer }}</p>
+                                <small class="text-muted">{{ cert.date }}</small>
+                                <div class="mt-2">
+                                    {% if cert.certificate_link %}
+                                    <a href="{{ cert.certificate_link }}" target="_blank" class="btn btn-outline-primary btn-sm me-1">
+                                        <i class="fas fa-download me-1"></i>View Certificate
+                                    </a>
+                                    {% endif %}
+                                    {% if cert.verification_link %}
+                                    <a href="{{ cert.verification_link }}" target="_blank" class="btn btn-outline-success btn-sm">
+                                        <i class="fas fa-check-circle me-1"></i>Verify
+                                    </a>
+                                    {% endif %}
+                                </div>
+                                {% if cert.credential_id %}
+                                <small class="text-muted d-block mt-1">ID: {{ cert.credential_id }}</small>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Resume Section -->
+<section id="resume" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-4">Resume</h2>
+                <p class="lead">Download my complete resume and professional credentials</p>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-file-pdf fa-4x text-danger mb-4"></i>
+                        <h5 class="card-title">Professional Resume</h5>
+                        <p class="card-text">
+                            Download my complete resume with detailed information about my education, 
+                            experience, projects, and technical skills.
+                        </p>
+                        
+                        <div class="resume-actions">
+                            <a href="{{ url_for('static', filename='resume/Raj_Shukla_Resume.pdf') }}" 
+                               class="btn btn-primary btn-lg me-3" 
+                               target="_blank">
+                                <i class="fas fa-download me-2"></i>Download Resume
+                            </a>
+                            <a href="{{ url_for('static', filename='resume/Raj_Shukla_Resume.pdf') }}" 
+                               class="btn btn-outline-secondary btn-lg" 
+                               target="_blank">
+                                <i class="fas fa-eye me-2"></i>View Online
+                            </a>
+                        </div>
+                        
+                        <div class="resume-info mt-4">
+                            <small class="text-muted">
+                                <i class="fas fa-calendar me-1"></i>Last Updated: January 2025 |
+                                <i class="fas fa-file-alt me-1"></i>PDF Format |
+                                <i class="fas fa-weight me-1"></i>~200KB
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Summary Card -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-info-circle me-2"></i>Resume Highlights
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <div class="text-center">
+                                    <i class="fas fa-graduation-cap fa-2x text-primary mb-2"></i>
+                                    <h6>Education</h6>
+                                    <small class="text-muted">Computer Science & Engineering<br>Lovely Professional University</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="text-center">
+                                    <i class="fas fa-briefcase fa-2x text-success mb-2"></i>
+                                    <h6>Experience</h6>
+                                    <small class="text-muted">ML Intern at Appwars Technologies<br>+ Multiple Projects</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="text-center">
+                                    <i class="fas fa-code fa-2x text-warning mb-2"></i>
+                                    <h6>Skills</h6>
+                                    <small class="text-muted">Python, ML, AI, TensorFlow<br>+ {{ data.skills.languages|length + data.skills.frameworks|length }} Technologies</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

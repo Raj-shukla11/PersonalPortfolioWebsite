@@ -1,0 +1,323 @@
+/* Custom styles for Raj Shukla Portfolio */
+
+/* Root variables for consistency */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --dark-color: #212529;
+    --light-color: #f8f9fa;
+}
+
+/* Global styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+.main-content {
+    margin-top: 56px; /* Account for fixed navbar */
+}
+
+/* Hero section styles */
+.hero-section {
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.1) 0%, rgba(108, 117, 125, 0.1) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content h1 {
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-content h2 {
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero-content p {
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.hero-buttons {
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.profile-image {
+    animation: fadeIn 1s ease-out 0.8s both;
+}
+
+.profile-photo {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border: 4px solid var(--bs-primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Card hover effects */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    background: var(--bs-dark);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Skill tags and badges */
+.tech-stack .badge,
+.skill-tags .badge,
+.datasets .badge {
+    font-size: 0.8em;
+    padding: 0.5em 0.8em;
+    transition: transform 0.2s ease;
+}
+
+.tech-stack .badge:hover,
+.skill-tags .badge:hover,
+.datasets .badge:hover {
+    transform: scale(1.1);
+}
+
+/* Navigation styles */
+.navbar {
+    backdrop-filter: blur(10px);
+    background-color: rgba(33, 37, 41, 0.95) !important;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: var(--bs-primary) !important;
+}
+
+.nav-link {
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--bs-primary);
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Contact form styles */
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.5rem 0;
+}
+
+.contact-item i {
+    width: 20px;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+/* Social links */
+.social-links a {
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.social-links a:hover {
+    color: var(--bs-primary) !important;
+    transform: translateY(-2px);
+}
+
+/* Flash messages */
+.flash-messages {
+    position: relative;
+    z-index: 1000;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Resume section styles */
+.resume-actions .btn {
+    transition: all 0.3s ease;
+}
+
+.resume-actions .btn:hover {
+    transform: translateY(-2px);
+}
+
+.resume-info {
+    background: rgba(var(--bs-secondary-rgb), 0.1);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+        padding: 2rem 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-buttons .btn:last-child {
+        margin-bottom: 0;
+    }
+    
+    .profile-photo {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .resume-actions .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .resume-actions .btn:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Project links styling */
+.project-links .btn {
+    transition: all 0.3s ease;
+}
+
+.project-links .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Loading states */
+.btn:disabled {
+    opacity: 0.6;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bs-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bs-secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bs-primary);
+}
+
+/* Form enhancements */
+.form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .hero-buttons,
+    .project-links,
+    .social-links,
+    footer {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-top: 0;
+    }
+    
+    .card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+    }
+    
+    body {
+        color: #000 !important;
+        background: #fff !important;
+    }
+}
+
+/* Accessibility improvements */
+.btn:focus,
+.nav-link:focus {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .card {
+        border: 2px solid var(--bs-light) !important;
+    }
+    
+    .badge {
+        border: 1px solid currentColor;
+    }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
